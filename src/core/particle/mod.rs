@@ -19,7 +19,7 @@ pub struct Particle {
     acceleration: Vector3,
     damping: Real,
     inverse_mass: Real,
-    forces: HashMap<String, Box<dyn ForceGenerator + 'static>>
+    forces: HashMap<String, Box<ForceGenerator + 'static>>
 }
 
 impl Particle {

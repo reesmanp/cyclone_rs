@@ -13,7 +13,7 @@ pub trait ForceGenerator {
     fn clone_box(&self) -> Box<ForceGenerator + 'static>;
 }
 
-impl Clone for Box<dyn ForceGenerator + 'static> {
+impl Clone for Box<ForceGenerator + 'static> {
     fn clone(&self) -> Self {
         self.clone_box()
     }

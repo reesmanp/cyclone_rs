@@ -13,6 +13,7 @@ pub mod force_generators;
 pub mod registry;
 
 #[derive(Clone)]
+/// Particle Struct
 pub struct Particle {
     position: Vector3,
     velocity: Vector3,
@@ -22,6 +23,7 @@ pub struct Particle {
     forces: HashMap<String, Box<ForceGenerator + 'static>>
 }
 
+/// Implements `Particle`
 impl Particle {
     pub fn new(position: Vector3, velocity: Vector3, acceleration: Vector3, mass: Option<Real>) -> Self {
         let inverse_mass: Real = match mass {

@@ -1,8 +1,10 @@
 use core::particle::Particle;
 use core::vector::Vector3;
 
+/// Struct to determine collisions
 struct Collision;
 
+/// Implements `Collision`
 impl Collision {
     pub fn closing_velocity(a: &Particle, b: &Particle) -> Vector3 {
         let a_velocity = a.get_velocity();

@@ -4,6 +4,7 @@ use std::clone::Clone;
 use types::Real;
 use core::particle::Particle;
 
+/// Main trait to attach to forces
 pub trait ForceGenerator {
     fn update(&mut self, forces: Vec<Vector3>) -> Vector3;
     fn get_forces(&self) -> Vec<Vector3>;
@@ -13,16 +14,19 @@ pub trait ForceGenerator {
     fn clone_box(&self) -> Box<ForceGenerator + 'static>;
 }
 
+/// Implements the `Clone` trait for a boxed `ForceGenerator`
 impl Clone for Box<ForceGenerator + 'static> {
     fn clone(&self) -> Self {
         self.clone_box()
     }
 }
 
+/// A basic force generator used for a simple case
 pub struct DefaultForceGenerator {
     force: Vector3
 }
 
+/// Implementation of functions specific to instantiation of `DefaultForceGenerator`
 impl DefaultForceGenerator {
     pub fn new(forces: Vec<Vector3>) -> Self {
         match forces.is_empty() {
@@ -46,6 +50,7 @@ impl DefaultForceGenerator {
     }
 }
 
+/// Implements the `ForceGenerator` trait for `DefaultForceGenerator`
 impl ForceGenerator for DefaultForceGenerator {
     fn update(&mut self, forces: Vec<Vector3>) -> Vector3 {
         match forces.is_empty() {
@@ -74,19 +79,26 @@ impl ForceGenerator for DefaultForceGenerator {
     }
 }
 
+/// Basic force using Earths gravity
 pub struct DefaultGravityForceGenerator;
 
+/// Instantiation of `DefaultGravityForceGenerator`
 impl DefaultGravityForceGenerator {
     pub fn new() -> DefaultForceGenerator {
         DefaultForceGenerator::new(vec![Vector3::new(0.0, -9.81, 0.0)])
     }
 }
 
+// TODO: Add `impl ForceGenerator for DefaultGravityForceGenerator`
+
+/// Basic implementation of a force generator that has a time to live
+/// Same as `DefaultForceGenerator` except for the ttl
 pub struct DefaultTemporaryForceGenerator {
     force: Vector3,
     ttl: Real
 }
 
+/// Instantiation for `DefaultTemporaryForceGenerator`
 impl DefaultTemporaryForceGenerator {
     pub fn new(forces: Vec<Vector3>, ttl: Real) -> Self {
         match forces.is_empty() {
@@ -112,6 +124,7 @@ impl DefaultTemporaryForceGenerator {
     }
 }
 
+/// Implements the `ForceGenerator` trait for `DefaultTemporaryForceGenerator`
 impl ForceGenerator for DefaultTemporaryForceGenerator {
     fn update(&mut self, forces: Vec<Vector3>) -> Vector3 {
         match forces.is_empty() {
@@ -146,6 +159,8 @@ impl ForceGenerator for DefaultTemporaryForceGenerator {
     }
 }
 
+/// Implements a basic spring particle force generator
+/// TODO: Test `other_particle` reference is correct
 pub struct DefaultSpringForceGenerator {
     stiffness: Real,
     resting: Real,
@@ -154,6 +169,7 @@ pub struct DefaultSpringForceGenerator {
 
 }
 
+/// Instantiation for `DefaultSpringForceGenerator`
 impl DefaultSpringForceGenerator {
     pub fn new(stiffness: Real, resting: Real, particle: &'static Particle, other_particle: &'static Particle) -> Self {
         Self {
@@ -165,6 +181,7 @@ impl DefaultSpringForceGenerator {
     }
 }
 
+/// Implements the `ForceGenerator` trait for `DefaultSpringForceGenerator`
 impl ForceGenerator for DefaultSpringForceGenerator {
     fn update(&mut self, _forces: Vec<Vector3>) -> Vector3 {
         Vector3::default()

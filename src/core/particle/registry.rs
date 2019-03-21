@@ -2,10 +2,12 @@ use super::Particle;
 use std::collections::HashMap;
 use types::Real;
 
+/// The particle storage system
 pub struct ParticleRegistry {
     pub particles: HashMap<String, Particle>
 }
 
+/// Implements `ParticleRegistry`
 impl ParticleRegistry {
     pub fn new() -> Self {
         Self {

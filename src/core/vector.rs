@@ -3,6 +3,7 @@ use std::ops::{Add, Mul, Div, Sub};
 use std::clone::Clone;
 
 #[allow(dead_code)]
+/// Struct representing 3-Dimensional vectors
 pub struct Vector3 {
     pub x: Real,
     pub y: Real,
@@ -10,6 +11,7 @@ pub struct Vector3 {
     pub pad: Real
 }
 
+/// Implement `Vector3`
 impl Vector3 {
     pub fn new(x: Real, y: Real, z: Real) -> Self {
         Self {
@@ -135,6 +137,7 @@ impl Vector3 {
     }
 }
 
+/// Implements the `Default` trait for `Vector3`
 impl Default for Vector3 {
     fn default() -> Self {
         Self {
@@ -146,9 +149,7 @@ impl Default for Vector3 {
     }
 }
 
-/**
- * Add
- */
+/// Implements the `Add` trait for `Vector3` with `Self`
 impl Add<Self> for Vector3 {
     type Output = Self;
 
@@ -162,6 +163,7 @@ impl Add<Self> for Vector3 {
     }
 }
 
+/// Implements the `Add` trait for `&Vector3` with `Self`
 impl<'a> Add<Self> for &'a Vector3 {
     type Output = Vector3;
 
@@ -175,9 +177,7 @@ impl<'a> Add<Self> for &'a Vector3 {
     }
 }
 
-/**
- * Sub
- */
+/// Implements the `Sub` trait for `Vector3` with `Self`
 impl Sub<Self> for Vector3 {
     type Output = Self;
 
@@ -187,9 +187,7 @@ impl Sub<Self> for Vector3 {
     }
 }
 
-/**
- * Mul
- */
+/// Implements the `Mul` trait for `Vector3` with `Real`
 impl Mul<Real> for Vector3 {
     type Output = Self;
 
@@ -203,6 +201,7 @@ impl Mul<Real> for Vector3 {
     }
 }
 
+/// Implements the `Mul` trait for `&Vector3` with `Real`
 impl<'a> Mul<Real> for &'a Vector3 {
     type Output = Vector3;
 
@@ -216,6 +215,7 @@ impl<'a> Mul<Real> for &'a Vector3 {
     }
 }
 
+/// Implements the `Mul` trait for `Real` with `Vector3`
 impl Mul<Vector3> for Real {
     type Output = Vector3;
 
@@ -229,6 +229,7 @@ impl Mul<Vector3> for Real {
     }
 }
 
+/// Implements the `Mul` trait for `Real` with `&Vector3`
 impl<'a> Mul<&'a Vector3> for Real {
     type Output = Vector3;
 
@@ -242,10 +243,9 @@ impl<'a> Mul<&'a Vector3> for Real {
     }
 }
 
-/**
- * Dot product
- * |a||b|cos {theta}
- */
+/// Implements the `Mul` trait for `Vector3` with `Self`
+/// Dot Product
+/// `|a||b|cos {theta}`
 impl Mul<Self> for Vector3 {
     type Output = Real;
 
@@ -254,6 +254,9 @@ impl Mul<Self> for Vector3 {
     }
 }
 
+/// Implements the `Mul` trait for `&Vector3` with `&Self`
+/// Dot Product
+/// `|a||b|cos {theta}`
 impl<'a> Mul<&'a Self> for &'a Vector3 {
     type Output = Real;
 
@@ -262,9 +265,7 @@ impl<'a> Mul<&'a Self> for &'a Vector3 {
     }
 }
 
-/**
- * Div
- */
+/// Implements the `Div` trait for `Vector3` with `Real`
 impl Div<Real> for Vector3 {
     type Output = Self;
 
@@ -274,6 +275,7 @@ impl Div<Real> for Vector3 {
     }
 }
 
+/// Implements the `Clone` trait for `Vector3`
 impl Clone for Vector3 {
     fn clone(&self) -> Self {
         Self {

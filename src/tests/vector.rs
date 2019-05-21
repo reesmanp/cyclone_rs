@@ -1,5 +1,5 @@
-use core::vector::Vector3;
-use types::Real;
+use crate::core::vector::Vector3;
+use crate::types::Real;
 use std::f64::consts::PI;
 use assert_approx_eq::assert_approx_eq;
 
@@ -14,8 +14,8 @@ fn test_direction() {
     let test_vector = Vector3::new(2.0, -2.0, -2.0);
     let normalized_test_vector = test_vector.normalize();
     let denominator: Real = 3.0;
-    let sqrt_denomiator = denominator.sqrt();
-    let answer_vector = Vector3::new(1.0 / sqrt_denomiator, -1.0 / sqrt_denomiator, -1.0 / sqrt_denomiator);
+    let sqrt_denominator = denominator.sqrt();
+    let answer_vector = Vector3::new(1.0 / sqrt_denominator, -1.0 / sqrt_denominator, -1.0 / sqrt_denominator);
     assert_eq!(normalized_test_vector.x, answer_vector.x);
     assert_eq!(normalized_test_vector.y, answer_vector.y);
     assert_eq!(normalized_test_vector.z, answer_vector.z);

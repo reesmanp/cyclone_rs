@@ -1,7 +1,7 @@
-use core::particle::Particle;
-use core::particle::force_generators::{DefaultForceGenerator, DefaultGravityForceGenerator};
-use core::particle::registry::ParticleRegistry;
-use core::vector::Vector3;
+use crate::core::particle::Particle;
+use crate::core::particle::force_generators::{DefaultForceGenerator, DefaultGravityForceGenerator};
+use crate::core::particle::registry::ParticleRegistry;
+use crate::core::vector::Vector3;
 
 #[test]
 fn test_registry() {

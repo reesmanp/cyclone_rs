@@ -2,6 +2,7 @@
 name = "cyclone"
 version = "0.1.0"
 authors = ["Paul Reesman <paul.reesman@nordstrom.com>"]
+edition = "2018"
 
 [features]
 default = []

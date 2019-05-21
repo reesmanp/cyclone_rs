@@ -1,5 +1,5 @@
-use core::particle::Particle;
-use core::vector::Vector3;
+use crate::core::particle::Particle;
+use crate::core::vector::Vector3;
 
 /// Struct to determine collisions
 struct Collision;

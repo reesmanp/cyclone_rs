@@ -1,5 +1,5 @@
-use core::vector::Vector3;
-use types::Real;
+use crate::core::vector::Vector3;
+use crate::types::Real;
 use self::force_generators::ForceGenerator;
 #[cfg(features = "single")]
 use std::f32::INFINITY;
@@ -20,7 +20,7 @@ pub struct Particle {
     acceleration: Vector3,
     damping: Real,
     inverse_mass: Real,
-    forces: HashMap<String, Box<ForceGenerator + 'static>>
+    forces: HashMap<String, Box<dyn ForceGenerator + 'static>>
 }
 
 /// Implements `Particle`

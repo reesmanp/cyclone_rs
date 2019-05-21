@@ -1,8 +1,8 @@
-use core::vector::Vector3;
+use crate::core::vector::Vector3;
+use crate::types::Real;
+use crate::core::particle::Particle;
 use std::vec::Vec;
 use std::clone::Clone;
-use types::Real;
-use core::particle::Particle;
 
 /// Main trait to attach to forces
 pub trait ForceGenerator {
@@ -11,11 +11,11 @@ pub trait ForceGenerator {
     fn sum_forces(&self) -> Vector3;
     fn time_elapsed(&mut self, time: Real) -> bool;
 
-    fn clone_box(&self) -> Box<ForceGenerator + 'static>;
+    fn clone_box(&self) -> Box<dyn ForceGenerator + 'static>;
 }
 
 /// Implements the `Clone` trait for a boxed `ForceGenerator`
-impl Clone for Box<ForceGenerator + 'static> {
+impl Clone for Box<dyn ForceGenerator + 'static> {
     fn clone(&self) -> Self {
         self.clone_box()
     }
@@ -74,7 +74,7 @@ impl ForceGenerator for DefaultForceGenerator {
         true
     }
 
-    fn clone_box(&self) -> Box<ForceGenerator + 'static> {
+    fn clone_box(&self) -> Box<dyn ForceGenerator + 'static> {
         Box::new(Self { force: self.force.clone() })
     }
 }
@@ -154,7 +154,7 @@ impl ForceGenerator for DefaultTemporaryForceGenerator {
         }
     }
 
-    fn clone_box(&self) -> Box<ForceGenerator + 'static> {
+    fn clone_box(&self) -> Box<dyn ForceGenerator + 'static> {
         Box::new(Self { force: self.force.clone(), ttl: self.ttl })
     }
 }
@@ -200,7 +200,7 @@ impl ForceGenerator for DefaultSpringForceGenerator {
         true
     }
 
-    fn clone_box(&self) -> Box<ForceGenerator + 'static> {
+    fn clone_box(&self) -> Box<dyn ForceGenerator + 'static> {
         Box::new(Self {
             stiffness: self.stiffness,
             resting: self.resting,

@@ -1,6 +1,6 @@
 use super::Particle;
 use std::collections::HashMap;
-use types::Real;
+use crate::types::Real;
 
 /// The particle storage system
 pub struct ParticleRegistry {

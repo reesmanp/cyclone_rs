@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["collision",""],["force_generators",""],["registry",""]],"struct":[["Particle","Particle Struct"]]});

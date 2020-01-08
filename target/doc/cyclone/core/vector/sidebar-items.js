@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Vector3","Struct representing 3-Dimensional vectors"]]});

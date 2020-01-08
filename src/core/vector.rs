@@ -22,10 +22,8 @@ impl Vector3 {
         }
     }
 
-    /**
-     * Takes ownership of self
-     * Returns new instance of self that is inverted
-     */
+    /// Takes ownership of self
+    /// Returns new instance of self that is inverted
     pub fn invert(self) -> Self {
         Self {
             x: self.x * -1.0,
@@ -35,20 +33,16 @@ impl Vector3 {
         }
     }
 
-    /**
-     * Mutates self
-     * Inverts self without returning
-     */
+    /// Mutates self
+    /// Inverts self without returning
     pub fn invert_inplace(&mut self) {
         self.x = self.x * -1.0;
         self.y = self.y * -1.0;
         self.z = self.z * -1.0;
     }
 
-    /**
-     * Does not take ownership of self
-     * Returns a new instance that is inverted from self
-     */
+    /// Does not take ownership of self
+    /// Returns a new instance that is inverted from self
     pub fn invert_clone(&self) -> Self {
         Self {
             x: self.x * -1.0,
@@ -58,15 +52,19 @@ impl Vector3 {
         }
     }
 
+    /// Calculates the magnitude of the vector
     pub fn magnitude(&self) -> Real {
         let mag: Real = self.square_magnitude();
         mag.sqrt()
     }
 
+    /// Calculates the magnitude of the vector but does not sqrt the value
     pub fn square_magnitude(&self) -> Real {
         self.x * self.x + self.y * self.y + self.z * self.z
     }
 
+    /// Consumes self
+    /// Returns a vector with magnitude 1
     pub fn normalize(self) -> Self {
         let mag = self.magnitude();
         Self {
@@ -77,13 +75,16 @@ impl Vector3 {
         }
     }
 
+    /// Mutates self
+    /// The magnitude of the vector is now 1
     pub fn normalize_inplace(&mut self) {
         let mag = self.magnitude();
         self.x = self.x / mag;
         self.y = self.y / mag;
-        self.z = self.z - mag;
+        self.z = self.z / mag;
     }
 
+    /// Returns a copy of this vector but with magnitude of 1
     pub fn normalize_clone(&self) -> Self {
         let mag = self.magnitude();
         Self {
@@ -94,6 +95,8 @@ impl Vector3 {
         }
     }
 
+    /// Consumes self
+    /// Calculates the cross product of the rhs vector
     pub fn cross(self, rhs: Self) -> Self {
         Self {
             x: self.y * rhs.z - self.z * rhs.y,
@@ -103,6 +106,8 @@ impl Vector3 {
         }
     }
 
+    /// Calculates the cross product of this vector and rhs
+    /// Returns a new vector
     pub fn cross_clone(&self, rhs: &Self) -> Self {
         Self {
             x: self.y * rhs.z - self.z * rhs.y,

@@ -1,1 +1,0 @@
-initSidebarItems({"type":[["Real","Real type using 64 bits Compiled by default"]]});

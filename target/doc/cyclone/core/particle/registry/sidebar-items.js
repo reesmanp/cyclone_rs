@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["ParticleRegistry","The particle storage system"]]});
